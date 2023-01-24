@@ -2,6 +2,11 @@ from apiclient import discovery
 from httplib2 import Http
 from oauth2client import client, file, tools
 
+#TODO: Remove responses from the google form after this program is ran 
+#TODO: Remove entries from the add.txt after the program is ran 
+#TODO: Throw the tokens/secrets into a folder and update paths 
+#TODO: Have the program automatically open groups.google.com to make it easier for input
+
 #set scopes for access
 SCOPES = "https://www.googleapis.com/auth/forms.responses.readonly"
 DISCOVERY_DOC = "https://forms.googleapis.com/$discovery/rest?version=v1"
