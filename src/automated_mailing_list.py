@@ -17,6 +17,7 @@ creds = None
 if not creds or creds.invalid:
     flow = client.flow_from_clientsecrets('credentials.json', SCOPES)
     flags = tools.argparser.parse_args(args=[]) #I found this online because the original boilerplate code didn't work
+    flags.noauth_local_webserver= True
     creds = tools.run_flow(flow, store, flags) #Same comment as above
 service = discovery.build('forms', 'v1', http=creds.authorize(Http()), discoveryServiceUrl=DISCOVERY_DOC, static_discovery=False)
 print("succesfully connected")
@@ -43,7 +44,7 @@ validated = []
 for e in correct_syntax:
     if e.split("@")[1] != "gmail.com" and e.split("@")[1] != "tamu.edu":
         #print(e)
-        validation = input("Is the following email valid? Type y or n" + e)
+        validation = input("Is the following email valid? Type y or n  " + e)
         if validation == "y":
             print("Confirmed")
             validated.append(e)
@@ -55,4 +56,6 @@ for e in correct_syntax:
 #format all the emails in an easy to copy/paste format and dump in txt file
 with open("add.txt", "a+") as myfile:
     myfile.write(",".join(map(str, validated)))
+
+
 
