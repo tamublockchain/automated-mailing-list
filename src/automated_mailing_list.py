@@ -17,7 +17,7 @@ creds = None
 if not creds or creds.invalid:
     flow = client.flow_from_clientsecrets('credentials.json', SCOPES)
     flags = tools.argparser.parse_args(args=[]) #I found this online because the original boilerplate code didn't work
-    flags.noauth_local_webserver= True
+    #flags.noauth_local_webserver = True this line is so the docker container asks for a code instead of opening a broswer
     creds = tools.run_flow(flow, store, flags) #Same comment as above
 service = discovery.build('forms', 'v1', http=creds.authorize(Http()), discoveryServiceUrl=DISCOVERY_DOC, static_discovery=False)
 print("succesfully connected")
